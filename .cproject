@@ -24,19 +24,31 @@
 							<builder buildPath="${workspace_loc:/Self-Parking_Car}/Debug" id="de.innot.avreclipse.target.builder.winavr.app.debug.1265038250" managedBuildOn="true" name="AVR GNU Make Builder.Debug" superClass="de.innot.avreclipse.target.builder.winavr.app.debug"/>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.app.debug.1332444646" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.app.debug">
 								<option id="de.innot.avreclipse.assembler.option.debug.level.68402029" superClass="de.innot.avreclipse.assembler.option.debug.level"/>
+<<<<<<< HEAD
 								<inputType id="de.innot.avreclipse.tool.assembler.input.642034314" superClass="de.innot.avreclipse.tool.assembler.input"/>
+=======
+								<inputType id="de.innot.avreclipse.tool.assembler.input.1837063205" superClass="de.innot.avreclipse.tool.assembler.input"/>
+>>>>>>> branch 'master' of https://github.com/AhmedEsaam/Self-Parking-Car.git
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.app.debug.1208238954" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.app.debug">
 								<option id="de.innot.avreclipse.compiler.option.debug.level.706135917" superClass="de.innot.avreclipse.compiler.option.debug.level"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.1272703211" superClass="de.innot.avreclipse.compiler.option.optimize"/>
+<<<<<<< HEAD
 								<inputType id="de.innot.avreclipse.compiler.winavr.input.159921858" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
+=======
+								<inputType id="de.innot.avreclipse.compiler.winavr.input.1678887744" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
+>>>>>>> branch 'master' of https://github.com/AhmedEsaam/Self-Parking-Car.git
 							</tool>
 							<tool id="de.innot.avreclipse.tool.cppcompiler.app.debug.1691206472" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.app.debug">
 								<option id="de.innot.avreclipse.cppcompiler.option.debug.level.2111078071" superClass="de.innot.avreclipse.cppcompiler.option.debug.level"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.171165426" superClass="de.innot.avreclipse.cppcompiler.option.optimize"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.linker.winavr.app.debug.1169562553" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.app.debug">
+<<<<<<< HEAD
 								<inputType id="de.innot.avreclipse.tool.linker.input.1646226509" name="OBJ Files" superClass="de.innot.avreclipse.tool.linker.input">
+=======
+								<inputType id="de.innot.avreclipse.tool.linker.input.981587228" name="OBJ Files" superClass="de.innot.avreclipse.tool.linker.input">
+>>>>>>> branch 'master' of https://github.com/AhmedEsaam/Self-Parking-Car.git
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
@@ -120,4 +132,8 @@
 	<storageModule moduleId="refreshScope"/>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+<<<<<<< HEAD
 </cproject>
+=======
+</cproject>
+>>>>>>> branch 'master' of https://github.com/AhmedEsaam/Self-Parking-Car.git

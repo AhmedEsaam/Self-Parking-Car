@@ -14,7 +14,7 @@
 /*
  * LOWER LIBRERY INCLUSION
 */
-#include "../../MCAL/DIO/DIO_int.h"
+#include "../../MCAL/DIO/DIO_interface.h"
 
 /*
  * SELF FILES INCLUSION
@@ -29,7 +29,7 @@
 
 void HLED_voidLedInit(LED_t* LedOBJ)
 {
-	MDIO_voidSetPinDirection (LedOBJ->LED_PORT , LedOBJ->LED_PIN , OUPUT);
+	MDIO_voidSetPinDir(LedOBJ->LED_PORT , LedOBJ->LED_PIN , OUTPUT);
 }
 void HLED_voidTurnOnLed(LED_t* LedOBJ)
 {

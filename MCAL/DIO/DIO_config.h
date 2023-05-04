@@ -1,18 +1,14 @@
-/*
- * ----------------------------------------------------------------------------------
- * Filename     :	DIO_config.h
- *
- * Author       :	Ahmed Essam El-Mogy
- * Created on   :	Mar 25, 2023
- * Version      :	v1.1
- * C Standard   :	C99
- * Compiler     :	AVR GCC
- * ----------------------------------------------------------------------------------
+/**
+ * @file DIO_config.h
+ * @author Doaa Hagag (doaahagag128@gmail.com)
+ * @brief DIO Driver for ATMEGA32 
+ * @version 0.1
+ * @date 2023-03-25
+ * @copyright Copyright (c) 2023
+ * 
  */
-
 #ifndef MCAL_DIO_DIO_CONFIG_H_
 #define MCAL_DIO_DIO_CONFIG_H_
-
 
 
 

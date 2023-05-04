@@ -16,6 +16,7 @@ RM := rm -rf
 -include HAL/LED/subdir.mk
 -include HAL/LCD/subdir.mk
 -include HAL/BUTTON/subdir.mk
+-include APP/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -36,6 +37,7 @@ endif
 
 -include ../makefile.defs
 
+<<<<<<< HEAD
 OPTIONAL_TOOL_DEPS := \
 $(wildcard ../makefile.defs) \
 $(wildcard ../makefile.init) \
@@ -47,6 +49,8 @@ BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
+=======
+>>>>>>> 3c1a3a3fdd4898f49ac4126f14ca1f42bf72df6f
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
 Self-Parking_Car.lss \
@@ -59,6 +63,7 @@ sizedummy \
 
 
 # All Target
+<<<<<<< HEAD
 all: main-build
 
 # Main-build Target
@@ -66,25 +71,43 @@ main-build: Self-Parking_Car.elf secondary-outputs
 
 # Tool invocations
 Self-Parking_Car.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+=======
+all: Self-Parking-Car.elf secondary-outputs
+
+# Tool invocations
+Self-Parking-Car.elf: $(OBJS) $(USER_OBJS)
+>>>>>>> 3c1a3a3fdd4898f49ac4126f14ca1f42bf72df6f
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
 	avr-gcc -Wl,-Map,Self-Parking_Car.map -mmcu=atmega32 -o "Self-Parking_Car.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
+<<<<<<< HEAD
 Self-Parking_Car.lss: Self-Parking_Car.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+=======
+Self-Parking-Car.lss: Self-Parking-Car.elf
+>>>>>>> 3c1a3a3fdd4898f49ac4126f14ca1f42bf72df6f
 	@echo 'Invoking: AVR Create Extended Listing'
 	-avr-objdump -h -S Self-Parking_Car.elf  >"Self-Parking_Car.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
+<<<<<<< HEAD
 Self-Parking_Car.hex: Self-Parking_Car.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+=======
+Self-Parking-Car.hex: Self-Parking-Car.elf
+>>>>>>> 3c1a3a3fdd4898f49ac4126f14ca1f42bf72df6f
 	@echo 'Create Flash image (ihex format)'
 	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Self-Parking_Car.elf  "Self-Parking_Car.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
+<<<<<<< HEAD
 sizedummy: Self-Parking_Car.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+=======
+sizedummy: Self-Parking-Car.elf
+>>>>>>> 3c1a3a3fdd4898f49ac4126f14ca1f42bf72df6f
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega32 Self-Parking_Car.elf
 	@echo 'Finished building: $@'
@@ -97,6 +120,7 @@ clean:
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
-.PHONY: all clean dependents main-build
+.PHONY: all clean dependents
+.SECONDARY:
 
 -include ../makefile.targets

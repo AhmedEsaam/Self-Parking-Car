@@ -14,7 +14,7 @@
 /*
  * LOWER LIBRERY INCLUSION
 */
-#include "../../MCAL/DIO/DIO_int.h"
+#include "../../MCAL/DIO/DIO_interface.h"
 
 /*
  * SELF FILES INCLUSION

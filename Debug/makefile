@@ -16,6 +16,7 @@ RM := rm -rf
 -include HAL/LED/subdir.mk
 -include HAL/LCD/subdir.mk
 -include HAL/BUTTON/subdir.mk
+-include APP/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -36,17 +37,6 @@ endif
 
 -include ../makefile.defs
 
-OPTIONAL_TOOL_DEPS := \
-$(wildcard ../makefile.defs) \
-$(wildcard ../makefile.init) \
-$(wildcard ../makefile.targets) \
-
-
-BUILD_ARTIFACT_NAME := Self-Parking-Car
-BUILD_ARTIFACT_EXTENSION := elf
-BUILD_ARTIFACT_PREFIX :=
-BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
-
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
 Self-Parking-Car.lss \
@@ -59,32 +49,29 @@ sizedummy \
 
 
 # All Target
-all: main-build
-
-# Main-build Target
-main-build: Self-Parking-Car.elf secondary-outputs
+all: Self-Parking-Car.elf secondary-outputs
 
 # Tool invocations
-Self-Parking-Car.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Self-Parking-Car.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
 	avr-gcc -Wl,-Map,Self-Parking-Car.map -mmcu=atmega32 -o "Self-Parking-Car.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Self-Parking-Car.lss: Self-Parking-Car.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Self-Parking-Car.lss: Self-Parking-Car.elf
 	@echo 'Invoking: AVR Create Extended Listing'
 	-avr-objdump -h -S Self-Parking-Car.elf  >"Self-Parking-Car.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Self-Parking-Car.hex: Self-Parking-Car.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Self-Parking-Car.hex: Self-Parking-Car.elf
 	@echo 'Create Flash image (ihex format)'
 	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Self-Parking-Car.elf  "Self-Parking-Car.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: Self-Parking-Car.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+sizedummy: Self-Parking-Car.elf
 	@echo 'Invoking: Print Size'
 	-avr-size --format=avr --mcu=atmega32 Self-Parking-Car.elf
 	@echo 'Finished building: $@'
@@ -97,6 +84,7 @@ clean:
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
-.PHONY: all clean dependents main-build
+.PHONY: all clean dependents
+.SECONDARY:
 
 -include ../makefile.targets

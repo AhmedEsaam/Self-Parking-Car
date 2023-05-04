@@ -31,7 +31,7 @@ void BUTTON_voidInit(BUTTON_t* Copy_pBUTTON_t_Obj)
 	MDIO_voidSetPinDirection(Copy_pBUTTON_t_Obj->BUTTON_u8PORT, Copy_pBUTTON_t_Obj->BUTTON_u8PIN, INPUT);
 }
 
-u8 BUTTON_u8Read(BUTTON_t* Copy_pBUTTON_t_Obj, u8* Copy_pu8Value)
+u8 BUTTON_u8Read(BUTTON_t* Copy_pBUTTON_t_Obj)
 {
 	return MDIO_voidReadPinValue(Copy_pBUTTON_t_Obj->BUTTON_u8PORT, Copy_pBUTTON_t_Obj->BUTTON_u8PIN);
 }

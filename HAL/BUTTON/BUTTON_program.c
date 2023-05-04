@@ -36,6 +36,7 @@ void BUTTON_voidInit(BUTTON_t* Copy_pBUTTON_t_Obj)
 	case NO_PULLUP:
 		MDIO_voidSetPinDir(Copy_pBUTTON_t_Obj->BUTTON_u8PORT, Copy_pBUTTON_t_Obj->BUTTON_u8PIN, INPUT_NO_PULLUP);
 		break;
+
 	default:
 		break;
 	}

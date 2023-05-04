@@ -27,10 +27,10 @@ typedef struct
 {
 	u8 BUTTON_u8PORT;
 	u8 BUTTON_u8PIN;
-	u8 BUTTON_u8Connection; /* PULLUP / PULLDOWN */
+	// u8 BUTTON_u8Connection; /* PULLUP / PULLDOWN */
 }BUTTON_t;
 
 void BUTTON_voidInit(BUTTON_t* Copy_pBUTTON_t_Obj);
-void BUTTON_voidRead(BUTTON_t* Copy_pBUTTON_t_Obj, u8* Copy_pu8Value);
+u8 BUTTON_u8Read(BUTTON_t* Copy_pBUTTON_t_Obj, u8* Copy_pu8Value);
 
 #endif /* BUTTON_INTERFACE_H */

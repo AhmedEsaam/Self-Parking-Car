@@ -22,7 +22,7 @@
  *         PORTC_ID
  *         PORTD_ID
  * */
-#define LCD_DATA_PORT		PORTD_ID
+#define LCD_DATA_PORT		PORTA_ID
 /**
  * choose from
  *         PORTA_ID

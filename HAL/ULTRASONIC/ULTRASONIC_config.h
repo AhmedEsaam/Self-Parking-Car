@@ -1,11 +1,11 @@
 #ifndef _ULTRASONIC_CONFIG_H_
 #define _ULTRASONIC_CONFIG_H_
 
-#define TRIG_PORT	DIO_
-#define TRIG_PIN
+#define TRIG_PORT	PORTC_ID
+#define TRIG_PIN	PIN5_ID
 
-#define ECO_PORT
-#define ECO_PIN
+#define ECO_PORT	PORTD_ID
+#define ECO_PIN		PIN6_ID
 
 
 #endif // _ULTRASONIC_CONFIG_H_

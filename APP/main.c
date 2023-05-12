@@ -28,17 +28,18 @@ void main(void)
 	HULTRASONIC_voidInit();
 	// enable GIE
 	M_GIE_void_enable();
+	HULTRASONIC_voidReadDistance(&Distance);
+	HLCD_voidSendNumber((u32)Distance);
 	while (1)
 	{
-		HULTRASONIC_voidReadDistance(&Distance);
-		HLCD_voidSendNumber((u32)Distance);
-		_delay_ms(1000);
-		HLCD_voidClearDisplay();
-		_delay_ms(1000);
-		HLCD_voidSendNumber(50);
-		_delay_ms(1000);
-		HLCD_voidClearDisplay();
-		_delay_ms(1000);
+
+//		_delay_ms(1000);
+//		HLCD_voidClearDisplay();
+//		_delay_ms(1000);
+//		HLCD_voidSendNumber(50);
+//		_delay_ms(1000);
+//		HLCD_voidClearDisplay();
+//		_delay_ms(1000);
 	}
 
 }

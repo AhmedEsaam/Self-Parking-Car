@@ -71,12 +71,13 @@ void HULTRASONIC_voidReadDistance(u16 *Local_pu16Distance)
 
 	// busy wait until counter =2
 	while (Global_u8StateCounter != 2);
+	Global_u8StateCounter =0 ;
 
 	// Calculate PWM Parameters
 	u32 PeriodTicks = Global_u16Reading2 - Global_u16Reading1 ;
 	u32 Time = PeriodTicks * TickTime ; // In us
 	u32 Distance =ceil ((((float)Time/2 )/ 1000000.0) * Sound_Rate)  ; // distance in cm
-	Local_pu16Distance = Distance ;
+	*Local_pu16Distance = Distance ;
 }
 
 void ICU_HW (void)

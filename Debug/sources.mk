@@ -29,6 +29,6 @@ MCAL/ADC \
 MCAL/DIO \
 MCAL/EXTI \
 MCAL/GIE \
-MCAL/TIMER0 \
+MCAL/Timer \
 . \
 

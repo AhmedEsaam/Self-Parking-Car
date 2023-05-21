@@ -39,6 +39,8 @@
     "dio_interface.h": "c",
     "dio_int.h": "c",
     "led_int.h": "c",
-    "exti_int.h": "c"
+    "exti_int.h": "c",
+    "dc_motor_interface.h": "c",
+    "lcd_int.h": "c"
   }
 }

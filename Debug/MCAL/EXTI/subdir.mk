@@ -4,13 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../MCAL/EXTI/EXTI_prog.c 
+../MCAL/EXTI/EXTI_program.c 
 
 OBJS += \
-./MCAL/EXTI/EXTI_prog.o 
+./MCAL/EXTI/EXTI_program.o 
 
 C_DEPS += \
-./MCAL/EXTI/EXTI_prog.d 
+./MCAL/EXTI/EXTI_program.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

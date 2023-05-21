@@ -37,6 +37,8 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "files.associations": {
     "dio_interface.h": "c",
-    "dio_int.h": "c"
+    "dio_int.h": "c",
+    "led_int.h": "c",
+    "exti_int.h": "c"
   }
 }

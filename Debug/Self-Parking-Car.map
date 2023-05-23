@@ -187,7 +187,7 @@ LOAD d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x318c
+.text           0x00000000     0x327a
  *(.vectors)
  .vectors       0x00000000       0x54 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -495,43 +495,43 @@ LOAD d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
  .text.BUTTON_u8Read
                 0x00002f82       0x2a ./HAL/BUTTON/BUTTON_program.o
                 0x00002f82                BUTTON_u8Read
- .text.main     0x00002fac       0x32 ./APP/main.o
+ .text.main     0x00002fac      0x120 ./APP/main.o
                 0x00002fac                main
- .text.libgcc   0x00002fde       0x44 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00002fde                __udivmodsi4
- .text.libgcc   0x00003022        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00003022        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00003022       0x38 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00003022                __prologue_saves__
- .text.libgcc   0x0000305a       0x36 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x0000305a                __epilogue_restores__
- .text.libgcc   0x00003090        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000030cc       0x44 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x000030cc                __udivmodsi4
+ .text.libgcc   0x00003110        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00003110        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00003110       0x38 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00003110                __prologue_saves__
+ .text.libgcc   0x00003148       0x36 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00003148                __epilogue_restores__
+ .text.libgcc   0x0000317e        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
  .text.avr-libc.fplib
-                0x00003090       0x26 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(ceil.o)
-                0x00003090                ceil
+                0x0000317e       0x26 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(ceil.o)
+                0x0000317e                ceil
  .text.avr-libc.fplib
-                0x000030b6       0x36 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_mintl.o)
-                0x000030b6                __fp_mintl
+                0x000031a4       0x36 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_mintl.o)
+                0x000031a4                __fp_mintl
  .text.avr-libc.fplib
-                0x000030ec       0x1c d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_mpack.o)
-                0x000030f0                __fp_mpack_finite
-                0x000030ec                __fp_mpack
+                0x000031da       0x1c d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_mpack.o)
+                0x000031de                __fp_mpack_finite
+                0x000031da                __fp_mpack
  .text.avr-libc.fplib
-                0x00003108       0x2e d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_trunc.o)
-                0x00003108                __fp_trunc
+                0x000031f6       0x2e d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_trunc.o)
+                0x000031f6                __fp_trunc
  .text.avr-libc.fplib
-                0x00003136        0xe d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_zero.o)
-                0x00003136                __fp_zero
-                0x00003138                __fp_szero
+                0x00003224        0xe d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_zero.o)
+                0x00003224                __fp_zero
+                0x00003226                __fp_szero
  .text.avr-libc.fplib
-                0x00003144       0x44 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_split3.o)
-                0x00003144                __fp_split3
-                0x00003154                __fp_splitA
-                0x00003188                . = ALIGN (0x2)
+                0x00003232       0x44 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(fp_split3.o)
+                0x00003232                __fp_split3
+                0x00003242                __fp_splitA
+                0x00003276                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00003188        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00003188                exit
-                0x00003188                _exit
+ .fini9         0x00003276        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00003276                exit
+                0x00003276                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -550,11 +550,11 @@ LOAD d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00003188        0x4 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00003276        0x4 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000318c                _etext = .
+                0x0000327a                _etext = .
 
-.data           0x00800060      0x108 load address 0x0000318c
+.data           0x00800060      0x108 load address 0x0000327a
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -683,8 +683,8 @@ LOAD d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
                 0x0080017e                ADC_u8DigitalValue
                 0x0080017f                ADC_u16DigitalResult
                 0x00800181                PROVIDE (__bss_end, .)
-                0x0000318c                __data_load_start = LOADADDR (.data)
-                0x00003294                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000327a                __data_load_start = LOADADDR (.data)
+                0x00003382                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800181        0x0
                 0x00800181                PROVIDE (__noinit_start, .)
@@ -709,7 +709,7 @@ LOAD d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x2fc4
+.stab           0x00000000     0x306c
  *(.stab)
  .stab          0x00000000      0xa2c ./MCAL/TIMER0/TIMER0_prog.o
  .stab          0x00000a2c      0x1b0 ./MCAL/GIE/GIE_prog.o
@@ -728,11 +728,11 @@ LOAD d:/study/iti_4months/tool/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
                                 0x990 (size before relaxing)
  .stab          0x00002a3c      0x1ec ./HAL/BUTTON/BUTTON_program.o
                                 0x1f8 (size before relaxing)
- .stab          0x00002c28      0x1ec ./APP/main.o
-                                0x384 (size before relaxing)
- .stab          0x00002e14       0xd8 ./newTest.o
+ .stab          0x00002c28      0x294 ./APP/main.o
+                                0x42c (size before relaxing)
+ .stab          0x00002ebc       0xd8 ./newTest.o
                                  0xe4 (size before relaxing)
- .stab          0x00002eec       0xd8 ./tester.o
+ .stab          0x00002f94       0xd8 ./tester.o
                                  0xe4 (size before relaxing)
 
 .stabstr        0x00000000     0x196b

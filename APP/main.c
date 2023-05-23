@@ -30,6 +30,7 @@ void main(void)
 	M_GIE_void_enable();
 	HULTRASONIC_voidReadDistance(&Distance);
 	HLCD_voidSendNumber((u32)Distance);
+	_delay_ms(1000);
 	while (1)
 	{
 

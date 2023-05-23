@@ -36,9 +36,9 @@
 #define TickTime  4
 #define Sound_Rate 34300 // cm/sec
 
-u16 Global_u16Reading1 =0;
-u16 Global_u16Reading2 =0;
-u8 Global_u8StateCounter=0;
+volatile u16 Global_u16Reading1 =0;
+volatile u16 Global_u16Reading2 =0;
+volatile u8 Global_u8StateCounter=0;
 
 
 void ICU_HW (void);

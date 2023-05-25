@@ -32,5 +32,6 @@ MCAL/DIO \
 MCAL/EXTI \
 MCAL/GIE \
 MCAL/Timer \
+build/Debug \
 . \
 

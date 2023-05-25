@@ -15,18 +15,46 @@
 #include "../HAL/MOTOR/DC_Motor_interface.h"
 #include "../HAL/ULTRASONIC/ULTRASONIC_int.h"
 
+#define requiredDistance    50
+
 /* IRs */
 static void IRAction(void);
 LED_t led1 = {PORTA_ID, PIN7_ID};
 EXTI_t ext = {INT0, FALLING_EDGE};
 
 typedef enum {
-    Idle, Moving, Parcking, UnParcking
+    Idle, Scanning, Parcking, UnParcking
 }states;
 
-void main(void)
+void MoveForward(Motor_t* Right, Motor_t* Left)
 {
-    states local_u8State = Idle;
+    HMotor_voidMotorRotateClockwise(&Right);
+    HMotor_voidMotorRotateClockwise(&Left);
+}
+
+// void ForwardRight(Motor_t* Right, Motor_t* Left, u8 Copy_u8SpeedDigitalValue)
+// {
+//     HMotor_voidMotorStop(&Right);
+//     TIMER0_voidSetCTCCompareMatchValue(Copy_u8SpeedDigitalValue); // Left motors 
+// }
+
+void BackwardRight(Motor_t* Right, Motor_t* Left, u8 Copy_u8SpeedDigitalValue)
+{
+    HMotor_voidMotorStop(&Right);
+    HMotor_voidMotorRotateAnticlockwise(&Left);
+    TIMER0_voidSetCTCCompareMatchValue(Copy_u8SpeedDigitalValue); // Left motors 
+}
+
+void BackwardLeft(Motor_t* Right, Motor_t* Left, u8 Copy_u8SpeedDigitalValue)
+{
+    HMotor_voidMotorStop(&Left);
+    HMotor_voidMotorRotateAnticlockwise(&Right);
+    TIMER0_voidSetCTCCompareMatchValue(Copy_u8SpeedDigitalValue); // Left motors 
+}
+
+int main(void)
+{
+    states local_u8State = Scanning;
 
     /* ULTRASONIC ........................................................... */
     u32 Distance ;
@@ -39,18 +67,22 @@ void main(void)
 	M_GIE_void_enable();
 
     /* MOTORS .............................................................. */
-    Motor_t RightMotors = {
-        .MotorClockwisePort = PORTD_ID,
-        .MotorClockwisePin = PIN0_ID,
-        .MotorAnticlockwisePort = PORTD_ID,
-        .MotorAnticlockwisePin = PIN1_ID,
-    };
-    Motor_t LeftMotors = {
+     Motor_t RightMotors = {
         .MotorClockwisePort = PORTD_ID,
         .MotorClockwisePin = PIN2_ID,
         .MotorAnticlockwisePort = PORTD_ID,
         .MotorAnticlockwisePin = PIN3_ID,
     };
+    Motor_t LeftMotors = {
+        .MotorClockwisePort = PORTD_ID,
+        .MotorClockwisePin = PIN0_ID,
+        .MotorAnticlockwisePort = PORTD_ID,
+        .MotorAnticlockwisePin = PIN1_ID,
+    };
+
+    TIMER0_voidInit();
+	MDIO_voidSetPinDirection(PORTB_ID, PIN3_ID, OUPUT);
+
     HMotor_voidMotorInit(&RightMotors);
     HMotor_voidMotorInit(&LeftMotors);
 
@@ -78,16 +110,28 @@ void main(void)
 		// HLCD_voidSendNumber(Distance);
 		// _delay_ms(400);
 
-        switch (states)
+        switch (local_u8State)
         {
-        case Idle:
+        case Idle: // Stop
             HMotor_voidMotorStop(&RightMotors);
             HMotor_voidMotorStop(&LeftMotors);
             break;
 
-        case Moving:
+        case Scanning: // car scans for empty slot while moving forward
+//            MoveForward(&RightMotors, &LeftMotors);
             HMotor_voidMotorRotateClockwise(&RightMotors);
             HMotor_voidMotorRotateClockwise(&LeftMotors);
+
+           	TIMER0_voidSetCTCCompareMatchValue(130);
+
+
+            while(Distance < requiredDistance)
+            {
+                HULTRASONIC_voidReadDistance(&Distance);
+                _delay_ms(400);
+            }
+            HMotor_voidMotorStop(&RightMotors);
+            HMotor_voidMotorStop(&LeftMotors);
 
             /* Scan */
             // t1;
@@ -100,6 +144,8 @@ void main(void)
             break;
 
         case Parcking:
+        	TIMER0_voidSetCTCCompareMatchValue(130);
+
             /* Sequence */
             break;
 
@@ -112,6 +158,7 @@ void main(void)
         }
 
     }
+    return 0;
 }
 
 

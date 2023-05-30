@@ -56,13 +56,12 @@ void main(void)
 
     TIMER0_voidInit();
 	MDIO_voidSetPinDirection(PORTB_ID, PIN3_ID, OUPUT);
-	 TIMER0_voidSetCTCCompareMatchValue(150);
+	 TIMER0_voidSetCTCCompareMatchValue(121);
 
 
      while(1)
      {
-//         measure distance
-//
+//       measure distance
 		 if(Distance <= 50)//
 		 {
 		 	HULTRASONIC_voidReadDistance(&Distance);
@@ -72,10 +71,9 @@ void main(void)
 		 }
 		 else
 		 {
-//			 	_delay_ms(2000);//
-
-		 HMotor_voidMotorStop(&RightMotors);
-		 HMotor_voidMotorStop(&LeftMotors);
+//			 _delay_ms(1000);//
+			 HMotor_voidMotorStop(&RightMotors);
+			 HMotor_voidMotorStop(&LeftMotors);
 		 }
 
 

@@ -13,6 +13,8 @@
  * LIBRARY INCLUSION
 */
 #include <avr/delay.h>
+#include <math.h> 	//ceil function
+
 
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
@@ -33,8 +35,8 @@
 
 
 // TickTime= prescaler / F_CPU =  64 / 16 = 4
-#define TickTime  4
-#define Sound_Rate 34300 // cm/sec
+//#define TickTime  4
+//#define Sound_Rate 34300 // cm/sec
 
 volatile u16 Global_u16Reading1 =0;
 volatile u16 Global_u16Reading2 =0;
@@ -45,7 +47,7 @@ void ICU_HW (void);
 void HULTRASONIC_voidInit(void)
 {
 	// set ICP1 Echo pin as INPUT
-	MDIO_voidSetPinDirection(PORTD_ID,PIN6_ID,INPUT);
+	MDIO_voidSetPinDirection(ECHO_PORT,ECHO_PIN,INPUT);
 	// set direction for trigg to be OUTPUT
 	MDIO_voidSetPinDirection(TRIG_PORT,TRIG_PIN,OUPUT);
 
@@ -75,7 +77,7 @@ void HULTRASONIC_voidReadDistance(u32 *Local_pu32Distance)
 
 	// Send Trigger
 	// Send High
-	MDIO_voidSetPinValue(TRIG_PORT,TRIG_PIN, HIGH );
+	MDIO_voidSetPinValue(TRIG_PORT,TRIG_PIN, HIGH);
 	// Delay for 10 micro secs (ON period)
 	_delay_us(10);
 	// send Low
@@ -100,6 +102,7 @@ void HULTRASONIC_voidReadDistance(u32 *Local_pu32Distance)
 		= 17150 x (TIMER value) x 10^-6 cm
 		= (TIMER value)/58.30 cm
 	*/
+	Local_u16OnTicks = Global_u16Reading2 - Global_u16Reading1 -1;
 	u32 Local_u32Distance = ceil(Local_u16OnTicks / 58.3) - 1;
 	*Local_pu32Distance = Local_u32Distance;
 }

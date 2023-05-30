@@ -41,6 +41,7 @@
     "led_int.h": "c",
     "exti_int.h": "c",
     "dc_motor_interface.h": "c",
-    "lcd_int.h": "c"
+    "lcd_int.h": "c",
+    "ultrasonic_int.h": "c"
   }
 }

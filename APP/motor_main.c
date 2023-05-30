@@ -13,7 +13,6 @@
 #include "../HAL/MOTOR/DC_Motor_interface.h"
 #include "../HAL/ULTRASONIC/ULTRASONIC_int.h"
 
-
 #include "../LIB/STD_TYPES.h"
 
 typedef enum {
@@ -26,13 +25,12 @@ void main(void)
     states local_u8State = Scanning;
 
 	u32 Distance =0;
-		// enable LCD
-		// HLCD_voidInit();
 		// enable ULTRASONIC
 		// ICU_voidSetTRiggerSignal();
 	HULTRASONIC_voidInit();
 		// enable GIE
 	M_GIE_void_enable();
+	// enable lcd
     HLCD_voidInit();
 
 		//      /////////////////////
@@ -42,6 +40,7 @@ void main(void)
         .MotorAnticlockwisePort = PORTD_ID,
         .MotorAnticlockwisePin = PIN3_ID,
     };
+
     Motor_t LeftMotors = {
         .MotorClockwisePort = PORTD_ID,
         .MotorClockwisePin = PIN0_ID,
@@ -52,31 +51,36 @@ void main(void)
     HMotor_voidMotorInit(&LeftMotors);
 
 
-    // HMotor_voidMotorRotateClockwise(&RightMotors);
-    // HMotor_voidMotorRotateClockwise(&LeftMotors);
+    HMotor_voidMotorRotateAnticlockwise(&RightMotors);
+    HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
 
     TIMER0_voidInit();
-//	 ADC_voidInit();
 	MDIO_voidSetPinDirection(PORTB_ID, PIN3_ID, OUPUT);
+	 TIMER0_voidSetCTCCompareMatchValue(150);
 
-    // while(1)
-    // {
-        // measure distance
-		// TIMER0_voidSetCTCCompareMatchValue(121);
 
-		// while(Distance < 50)//
-		// {
-		// 	HULTRASONIC_voidReadDistance(&Distance);
-        //     HLCD_voidClearDisplay();
-        //     HLCD_voidSendNumber(Distance);
-		// 	_delay_ms(300);//
-		// }
-		// HMotor_voidMotorStop(&RightMotors);
-		// HMotor_voidMotorStop(&LeftMotors);
+     while(1)
+     {
+//         measure distance
+//
+		 if(Distance <= 50)//
+		 {
+		 	HULTRASONIC_voidReadDistance(&Distance);
+             HLCD_voidSendNumber(Distance);
+		 	_delay_ms(100);//
+            HLCD_voidClearDisplay();
+		 }
+		 else
+		 {
+//			 	_delay_ms(2000);//
+
+		 HMotor_voidMotorStop(&RightMotors);
+		 HMotor_voidMotorStop(&LeftMotors);
+		 }
 
 
         // parcking
-		TIMER0_voidSetCTCCompareMatchValue(130);
+//		TIMER0_voidSetCTCCompareMatchValue(130);
         // forward
 //        HMotor_voidMotorRotateClockwise(&RightMotors);
 //        HMotor_voidMotorRotateClockwise(&LeftMotors);
@@ -86,28 +90,28 @@ void main(void)
 //        HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
 //        _delay_ms(300);
 
-        for (int i=0; i <9; i++)
-        {
-            HMotor_voidMotorStop(&RightMotors);
-            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-            _delay_ms(100);
-            // back
-            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-            _delay_ms(100);
-        }
-
-        //back left
-        for (int i=0; i <9; i++)
-        {
-            HMotor_voidMotorStop(&LeftMotors);
-            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-            _delay_ms(100);
-            // back
-            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-            _delay_ms(100);
-        }
+//        for (int i=0; i <9; i++)
+//        {
+//            HMotor_voidMotorStop(&RightMotors);
+//            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
+//            _delay_ms(100);
+//            // back
+//            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
+//            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
+//            _delay_ms(100);
+//        }
+//
+//        //back left
+//        for (int i=0; i <9; i++)
+//        {
+//            HMotor_voidMotorStop(&LeftMotors);
+//            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
+//            _delay_ms(100);
+//            // back
+//            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
+//            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
+//            _delay_ms(100);
+//        }
 
 
 //        _delay_ms();
@@ -116,11 +120,11 @@ void main(void)
 //        HMotor_voidMotorStop(&RightMotors);
 //        _delay_ms(500);
 
-    // }
-    while(1)
-    {
-        HMotor_voidMotorStop(&RightMotors);
-        HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-    }
+     }
+//    while(1)
+//    {
+//        HMotor_voidMotorStop(&RightMotors);
+//        HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
+//    }
 }
 

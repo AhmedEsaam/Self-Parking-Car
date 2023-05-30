@@ -13,7 +13,7 @@
 #include "../LIB/STD_TYPES.h"
 #include "../LIB/BIT_MATH.h"
 #include  <util/delay.h>
-// #include <math.h> 	//ceil function
+#include <math.h> 	//ceil function
 // #include "../MCAL/TIMER0/TIMER0_interface.h"
 #include "../MCAL/DIO/DIO_int.h"
 #include "../MCAL/GIE/GIE_int.h"
@@ -21,13 +21,13 @@
 #include "../HAL/ULTRASONIC/ULTRASONIC_int.h"
 
 
+#if 1
 void main(void)
 {
-	u32 Distance ;
+	u32 Distance = 1;
 	// enable LCD
 	HLCD_voidInit();
 	// enable ULTRASONIC
-	// ICU_voidSetTRiggerSignal();
 	HULTRASONIC_voidInit();
 	// enable GIE
 	M_GIE_void_enable();
@@ -42,12 +42,14 @@ void main(void)
 //		HLCD_voidClearDisplay();
 //		_delay_ms(1000);
 		HULTRASONIC_voidReadDistance(&Distance);
-		HLCD_voidClearDisplay();
 		HLCD_voidSendNumber(Distance);
+//		HLCD_voidSendString("Doaa");
 		_delay_ms(400);
+		HLCD_voidClearDisplay();
 	}
 
 }
+#endif
 
 #if 0
 

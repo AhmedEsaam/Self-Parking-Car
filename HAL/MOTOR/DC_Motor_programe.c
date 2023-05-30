@@ -67,4 +67,6 @@ void HMotor_voidMotorStop(Motor_t* Copy_pMotor_t_Obj)
 	MDIO_voidSetPinValue(Copy_pMotor_t_Obj->MotorAnticlockwisePort , Copy_pMotor_t_Obj->MotorAnticlockwisePin , LOW);
 }
 
+
+
 // void HMotor_void

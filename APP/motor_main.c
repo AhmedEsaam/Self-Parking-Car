@@ -15,6 +15,12 @@
 
 #include "../LIB/STD_TYPES.h"
 
+void Forward(Motor_t* Right, Motor_t* Left)
+{
+	 HMotor_voidMotorRotateAnticlockwise(&Right);
+	    HMotor_voidMotorRotateAnticlockwise(&Left);
+}
+
 typedef enum {
     Idle, Scanning, Parcking, UnParcking
 }states;
@@ -51,30 +57,75 @@ void main(void)
     HMotor_voidMotorInit(&LeftMotors);
 
 
-    HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-    HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
+ HMotor_voidMotorRotateAnticlockwise(&RightMotors);
+ HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
+
+
 
     TIMER0_voidInit();
 	MDIO_voidSetPinDirection(PORTB_ID, PIN3_ID, OUPUT);
-	 TIMER0_voidSetCTCCompareMatchValue(121);
+	 TIMER0_voidSetCTCCompareMatchValue(150);
 
 
      while(1)
      {
-//       measure distance
-		 if(Distance <= 50)//
-		 {
-		 	HULTRASONIC_voidReadDistance(&Distance);
-             HLCD_voidSendNumber(Distance);
-		 	_delay_ms(100);//
-            HLCD_voidClearDisplay();
-		 }
-		 else
-		 {
-//			 _delay_ms(1000);//
-			 HMotor_voidMotorStop(&RightMotors);
-			 HMotor_voidMotorStop(&LeftMotors);
-		 }
+    	 switch (local_u8State)
+		{
+			case Idle:
+
+				 HMotor_voidMotorStop(&RightMotors);
+				 HMotor_voidMotorStop(&LeftMotors);
+
+			break;
+			case Scanning:
+				 if(Distance <= 50)//
+				 {
+				 	HULTRASONIC_voidReadDistance(&Distance);
+		             HLCD_voidSendNumber(Distance);
+				 	_delay_ms(100);//
+		            HLCD_voidClearDisplay();
+				 }
+				 else
+				 {
+					 _delay_ms(1000);//
+					 HMotor_voidMotorStop(&RightMotors);
+					 HMotor_voidMotorStop(&LeftMotors);
+					 _delay_ms(1000);//
+					 local_u8State = Parcking;
+				 }
+
+			break;
+			case Parcking:
+				 for (int i=0; i <2; i++)
+				{
+					HMotor_voidMotorStop(&RightMotors);
+					HMotor_voidMotorRotateClockwise(&LeftMotors);
+					_delay_ms(700);
+					// back
+					HMotor_voidMotorRotateClockwise(&RightMotors);
+					HMotor_voidMotorRotateClockwise(&LeftMotors);
+					_delay_ms(700);
+				}
+
+				//back left
+				for (int i=0; i <2; i++)
+				{
+					HMotor_voidMotorStop(&LeftMotors);
+					HMotor_voidMotorRotateClockwise(&RightMotors);
+					_delay_ms(700);
+					// back
+					HMotor_voidMotorRotateClockwise(&RightMotors);
+					HMotor_voidMotorRotateClockwise(&LeftMotors);
+					_delay_ms(700);
+				}
+				 local_u8State = Idle;
+
+
+			break;
+			default:
+			break;
+		}
+
 
 
         // parcking
@@ -87,29 +138,6 @@ void main(void)
 //        HMotor_voidMotorRotateAnticlockwise(&RightMotors);
 //        HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
 //        _delay_ms(300);
-
-//        for (int i=0; i <9; i++)
-//        {
-//            HMotor_voidMotorStop(&RightMotors);
-//            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-//            _delay_ms(100);
-//            // back
-//            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-//            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-//            _delay_ms(100);
-//        }
-//
-//        //back left
-//        for (int i=0; i <9; i++)
-//        {
-//            HMotor_voidMotorStop(&LeftMotors);
-//            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-//            _delay_ms(100);
-//            // back
-//            HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-//            HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-//            _delay_ms(100);
-//        }
 
 
 //        _delay_ms();

@@ -34,6 +34,7 @@
     "**/.vscode/**"
   ],
   "C_Cpp_Runner.useAddressSanitizer": false,
+<<<<<<< HEAD
   "C_Cpp_Runner.showCompilationTime": false,
   "files.associations": {
     "dio_interface.h": "c",
@@ -45,4 +46,7 @@
     "ultrasonic_int.h": "c",
     "adc_interface.h": "c"
   }
+=======
+  "C_Cpp_Runner.showCompilationTime": false
+>>>>>>> 60ce6534de27954c8ad0f5356162d15f18b7e0d9
 }

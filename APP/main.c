@@ -74,8 +74,7 @@ void main(void)
 	 EXTI_voidEnable(&ext);
 	 EXTI_voidSetCallback(&ext, &intAction);
 
-	 u8 Local_u8Counter;
-
+	 
      while(1)
      {
     	 switch (local_u8State)
@@ -89,18 +88,37 @@ void main(void)
 				 if(Distance <= 50)//
 				 {
 				 	HULTRASONIC_voidReadDistance(&Distance);
-		             HLCD_voidSendNumber(Distance);
+		            HLCD_voidSendNumber(Distance);
 				 	_delay_ms(100);//
 		            HLCD_voidClearDisplay();
 				 }
-				 else
+				 else // distance > 50 
 				 {
-					 _delay_ms(1000);//
-					 HMotor_voidMotorStop(&RightMotors);
-					 HMotor_voidMotorStop(&LeftMotors);
-					 _delay_ms(700);//
-					 local_u8State = Parcking;
-				 }
+                    u8 Local_u8Iterator = 0 ;
+                    for ( Local_u8Iterator = 0 ; Local_u8Iterator < 10 ; Local_u8Iterator ++ ) // i = 0 
+                    {
+                        HULTRASONIC_voidReadDistance(&Distance);
+                        HLCD_voidSendNumber(Distance);
+                        if (Distance < 50)
+                        {
+                            break; 
+                        }
+                        _delay_ms(100);
+                        HLCD_voidClearDisplay();
+                    }
+                    
+                    if (Local_u8Iterator != 10)
+                    {
+                        local_u8State = Scanning;
+                    }
+                    else
+                    {
+                        HMotor_voidMotorStop(&RightMotors);
+                        HMotor_voidMotorStop(&LeftMotors);
+                        _delay_ms(700);//
+                        local_u8State = Parcking;
+                    }
+				}
 
 			break;
 			case Parcking:

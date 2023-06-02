@@ -21,8 +21,8 @@ static void intAction(void);
 EXTI_t ext = {INT0, FALLING_EDGE};
 
 typedef enum {
-    Idle, Scanning, Parcking, UnParcking
-}states;
+    Idle, Scanning, Parcking,
+	}states;
 
 states local_u8State = Scanning;
 
@@ -76,17 +76,30 @@ void main(void)
 
 	 
      while(1)
-     {
+     { 
+		// check car mode state 
     	 switch (local_u8State)
 		{
+			// if case = idle -> car in stop mode  
 			case Idle:
 				 HMotor_voidMotorStop(&RightMotors);
 				 HMotor_voidMotorStop(&LeftMotors);
 
 			break;
+			/*
+			* if state is scanning 
+			* start the sequance 
+			* scan for sufficient  distance every 100 ms
+			* after 1000 ms and the distance suitble for parking
+			* go to parking mode 
+			* if not 
+			* start scanning again 
+			*/
+
 			case Scanning:
 				 if(Distance <= 50)//
 				 {
+					// get the distance and 
 				 	HULTRASONIC_voidReadDistance(&Distance);
 		            HLCD_voidSendNumber(Distance);
 				 	_delay_ms(100);//
@@ -168,13 +181,9 @@ static void intAction(void)
 	 HMotor_voidMotorStop(&RightMotors);
 	 HMotor_voidMotorStop(&LeftMotors);
 	_delay_ms(100);
-	 HMotor_voidMotorRotateAnticlockwise(&RightMotors);
-	 HMotor_voidMotorRotateAnticlockwise(&LeftMotors);
-	_delay_ms(200);
-	 HMotor_voidMotorStop(&RightMotors);
-	 HMotor_voidMotorStop(&LeftMotors);
+	
+	
 
-	 while(1);
 }
 
 

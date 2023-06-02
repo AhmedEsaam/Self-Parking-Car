@@ -22,9 +22,14 @@ C_DEPS :=
 SUBDIRS := \
 APP \
 HAL/BUTTON \
+HAL/IR \
 HAL/LCD \
 HAL/LED \
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+HAL/MOTOR \
+>>>>>>> Doaa-Hagag
 HAL/ULTRASONIC \
 =======
 HAL/MOTOR \
@@ -33,6 +38,7 @@ MCAL/ADC \
 MCAL/DIO \
 MCAL/EXTI \
 MCAL/GIE \
-MCAL/TIMER0 \
+MCAL/Timer \
+build/Debug \
 . \
 

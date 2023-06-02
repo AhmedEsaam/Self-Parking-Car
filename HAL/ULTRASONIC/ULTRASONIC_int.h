@@ -12,7 +12,7 @@
 #define _ULTRASONIC_INT_H_
 
 void HULTRASONIC_voidInit(void);
-void HULTRASONIC_voidReadDistance(u16 *Local_pu16Distance);
+void HULTRASONIC_voidReadDistance(u32 *Local_pu32Distance);
 
 
 #endif // _ULTRASONIC_CONFIG_H_

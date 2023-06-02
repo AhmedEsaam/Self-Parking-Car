@@ -13,6 +13,8 @@
  * LIBRARY INCLUSION
 */
 #include <avr/delay.h>
+#include <math.h> 	//ceil function
+
 
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
@@ -20,9 +22,10 @@
 /*
  * LOWER LIBRERY INCLUSION
 */
-
-#include "../../MCAL/TIMER0/TIMER0_interface.h"
+#include "../../MCAL/Timer/Timer_interface.h"
 #include "../../MCAL/DIO/DIO_int.h"
+#include "../../MCAL/GIE/GIE_int.h"
+
 /*
  * SELF FILES INCLUSION
 */
@@ -32,71 +35,97 @@
 
 
 // TickTime= prescaler / F_CPU =  64 / 16 = 4
-#define TickTime  4
-#define Sound_Rate 34300 // cm/sec
+//#define TickTime  4
+//#define Sound_Rate 34300 // cm/sec
 
-u16 Global_u16Reading1 =0;
-u16 Global_u16Reading2 =0;
-u8 Global_u8StateCounter=0;
+volatile u16 Global_u16Reading1 =0;
+volatile u16 Global_u16Reading2 =0;
+volatile u8 Global_u8StateCounter=0;
 
 
 void ICU_HW (void);
 void HULTRASONIC_voidInit(void)
 {
-	// set ICP1 pin as INPUT
-	MDIO_voidSetPinDirection(PORTD_ID,PIN6_ID,INPUT);
+	// set ICP1 Echo pin as INPUT
+	MDIO_voidSetPinDirection(ECHO_PORT,ECHO_PIN,INPUT);
 	// set direction for trigg to be OUTPUT
-	MDIO_voidSetPinDirection(PORTC_ID,PIN5_ID,OUPUT);
+	MDIO_voidSetPinDirection(TRIG_PORT,TRIG_PIN,OUPUT);
 
 	// Initialize ICU
-	ICU_voidInterruptControl(ICU_Enable);
+	ICU_voidInterruptControl(ICU_ENABLE);
+	
 	// Set Call Back
-	ICU_voidSetCallback(ICU_HW);
+	ICU_vodSetCallBack(&ICU_HW);
+
+	/* Enable Global Interrupt */
+    M_GIE_void_enable();
 
 	// Initialize Timer1
-	Timer1_voidInit(); // timer1 start
+	TIMER1_voidInit(); // timer1 start
 }
 
-void HULTRASONIC_voidReadDistance(u16 *Local_pu16Distance)
+void HULTRASONIC_voidReadDistance(u32 *Local_pu32Distance)
 {
-	u32 Local_u32PeridTicks =0 ;
+	u16 Local_u16OnTicks =0;
+	Global_u8StateCounter = 0;
+
+
+	// Initialize ICU
+	ICU_voidInterruptControl(ICU_ENABLE);
+	/* Set The Trigger to be Rising Edge */
+    ICU_voidSetTriggerSignal(ICU_RISING_EDGE);	
 
 	// Send Trigger
 	// Send High
-	MDIO_voidSetPinValue(PORTC_ID,PIN5_ID, HIGH );
+	MDIO_voidSetPinValue(TRIG_PORT,TRIG_PIN, HIGH);
 	// Delay for 10 micro secs (ON period)
 	_delay_us(10);
 	// send Low
-	MDIO_voidSetPinValue(PORTC_ID,PIN5_ID,LOW);
+	MDIO_voidSetPinValue(TRIG_PORT,TRIG_PIN,LOW);
 
 	// busy wait until counter =2
 	while (Global_u8StateCounter != 2);
 
 	// Calculate PWM Parameters
-	u32 PeriodTicks = Global_u16Reading2 - Global_u16Reading1 ;
-	u32 Time = PeriodTicks * TickTime ; // In us
-	u32 Distance =ceil ((((float)Time/2 )/ 1000000.0) * Sound_Rate)  ; // distance in cm
-	Local_pu16Distance = Distance ;
+	// u32 PeriodTicks = Global_u16Reading2 - Global_u16Reading1 ;
+	// u32 Time = PeriodTicks * TickTime ; // In us
+	// u32 Distance =ceil ((((float)Time/2 )/ 1000000.0) * Sound_Rate)  ; // distance in cm
+	
+	/*
+		Sound velocity =   343.00 m/s = 34300 cm/s
+		distance = (Sound Vel. * Timer Value) / 2 
+		= 17150 * Timer value
+		we have selected an internal 8 MHz oscillator frequency for ATmega16, 
+		with presale = 8 for timer frequency. 
+		Then time to execute 1 instruction is 1 us.
+
+		= 17150 x (TIMER value) x 10^-6 cm
+		= (TIMER value)/58.30 cm
+	*/
+	Local_u16OnTicks = Global_u16Reading2 - Global_u16Reading1 -1;
+	u32 Local_u32Distance = ceil(Local_u16OnTicks / 58.3) - 1;
+	*Local_pu32Distance = Local_u32Distance;
 }
 
 void ICU_HW (void)
 {
 	switch (Global_u8StateCounter)
 	{
-	case 0 :
+	case 0:
 		// read
-		Global_u16Reading1 = ICU_u16getICRRegister();
+		Global_u16Reading1 = ICU_u16GetICRRegister();
 		// change trigger to be falling
-		ICU_voidSetTRiggerSignal(FALLING_EDGE);
+		ICU_voidSetTriggerSignal(ICU_FALLING_EDGE);
 		break;
-	case 1 :
+	case 1:
 		// read
-		Global_u16Reading2 = ICU_u16getICRRegister();
+		Global_u16Reading2 = ICU_u16GetICRRegister();
 		// disable ICU Interrupt
-		ICU_voidInterruptControl (ICU_Disable);
+		ICU_voidSetTriggerSignal(ICU_DISABLE);
 		break ;
 	default : /* do nothing */
 			break;
 	}
-	Global_u8StateCounter ++ ;
+
+	Global_u8StateCounter++;
 }

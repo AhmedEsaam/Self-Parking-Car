@@ -9,14 +9,17 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include MCAL/TIMER0/subdir.mk
+-include build/Debug/subdir.mk
+-include MCAL/Timer/subdir.mk
 -include MCAL/GIE/subdir.mk
 -include MCAL/EXTI/subdir.mk
 -include MCAL/DIO/subdir.mk
 -include MCAL/ADC/subdir.mk
 -include HAL/ULTRASONIC/subdir.mk
+-include HAL/MOTOR/subdir.mk
 -include HAL/LED/subdir.mk
 -include HAL/LCD/subdir.mk
+-include HAL/IR/subdir.mk
 -include HAL/BUTTON/subdir.mk
 -include APP/subdir.mk
 -include subdir.mk

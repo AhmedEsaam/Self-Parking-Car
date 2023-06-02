@@ -1,3 +1,49 @@
+<<<<<<< HEAD
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+-include ../makefile.init
+
+RM := rm -rf
+
+# All of the sources participating in the build are defined here
+-include sources.mk
+-include build/Debug/subdir.mk
+-include MCAL/Timer/subdir.mk
+-include MCAL/GIE/subdir.mk
+-include MCAL/EXTI/subdir.mk
+-include MCAL/DIO/subdir.mk
+-include MCAL/ADC/subdir.mk
+-include HAL/ULTRASONIC/subdir.mk
+-include HAL/MOTOR/subdir.mk
+-include HAL/LED/subdir.mk
+-include HAL/LCD/subdir.mk
+-include HAL/IR/subdir.mk
+-include HAL/BUTTON/subdir.mk
+-include APP/subdir.mk
+-include subdir.mk
+-include objects.mk
+
+ifneq ($(MAKECMDGOALS),clean)
+ifneq ($(strip $(ASM_DEPS)),)
+-include $(ASM_DEPS)
+endif
+ifneq ($(strip $(S_DEPS)),)
+-include $(S_DEPS)
+endif
+ifneq ($(strip $(S_UPPER_DEPS)),)
+-include $(S_UPPER_DEPS)
+endif
+ifneq ($(strip $(C_DEPS)),)
+-include $(C_DEPS)
+endif
+endif
+
+-include ../makefile.defs
+
+# Add inputs and outputs from these tool invocations to the build variables 
+=======
 ################################################################################
 # Automatically-generated file. Do not edit!
 ################################################################################
@@ -39,6 +85,7 @@ endif
 -include ../makefile.defs
 
 # Add inputs and outputs from these tool invocations to the build variables 
+>>>>>>> 1b1e65e90ad9820aca28b8e95441fa5edddf3a25
 LSS += \
 Self-Parking-Car.lss \
 

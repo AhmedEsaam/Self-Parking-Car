@@ -22,7 +22,7 @@
  *         PORTC_ID
  *         PORTD_ID
  * */
-#define LCD_DATA_PORT		PORTD_ID
+#define LCD_DATA_PORT		PORTA_ID
 /**
  * choose from
  *         PORTA_ID
@@ -31,8 +31,8 @@
  *         PORTD_ID
  * */
 #define LCD_CTRL_PORT		PORTB_ID
-#define LCD_RW_PIN			PIN0_ID
-#define LCD_RS_PIN			PIN1_ID
+#define LCD_RS_PIN			PIN0_ID
+#define LCD_RW_PIN			PIN1_ID
 #define	LCD_EN_PIN			PIN2_ID
 
 

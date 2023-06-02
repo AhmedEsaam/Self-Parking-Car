@@ -53,7 +53,6 @@ void HMotor_voidMotorRotateClockwise(Motor_t* Copy_pMotor_t_Obj)
 {
 	MDIO_voidSetPinValue(Copy_pMotor_t_Obj->MotorClockwisePort , Copy_pMotor_t_Obj->MotorClockwisePin , HIGH);
 	MDIO_voidSetPinValue(Copy_pMotor_t_Obj->MotorAnticlockwisePort , Copy_pMotor_t_Obj->MotorAnticlockwisePin , LOW);
-	
 }
 
 void HMotor_voidMotorRotateAnticlockwise(Motor_t* Copy_pMotor_t_Obj)
@@ -67,3 +66,7 @@ void HMotor_voidMotorStop(Motor_t* Copy_pMotor_t_Obj)
 	MDIO_voidSetPinValue(Copy_pMotor_t_Obj->MotorClockwisePort , Copy_pMotor_t_Obj->MotorClockwisePin , LOW);
 	MDIO_voidSetPinValue(Copy_pMotor_t_Obj->MotorAnticlockwisePort , Copy_pMotor_t_Obj->MotorAnticlockwisePin , LOW);
 }
+
+
+
+// void HMotor_void

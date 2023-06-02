@@ -24,7 +24,11 @@ APP \
 HAL/BUTTON \
 HAL/LCD \
 HAL/LED \
+<<<<<<< HEAD
 HAL/ULTRASONIC \
+=======
+HAL/MOTOR \
+>>>>>>> 1b1e65e90ad9820aca28b8e95441fa5edddf3a25
 MCAL/ADC \
 MCAL/DIO \
 MCAL/EXTI \

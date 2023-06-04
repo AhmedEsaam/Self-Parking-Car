@@ -99,13 +99,13 @@ void main(void)
 			case Scanning:
 				 if(Distance <= 50)//
 				 {
-					// get the distance and 
+					// get the distance and display it on LCD 
 				 	HULTRASONIC_voidReadDistance(&Distance);
 		            HLCD_voidSendNumber(Distance);
 				 	_delay_ms(100);//
 		            HLCD_voidClearDisplay();
 				 }
-				 else // distance > 50 
+				 else // distance > 50 // read the distance 10 times after find a suitble deapth  
 				 {
                     u8 Local_u8Iterator = 0 ;
                     for ( Local_u8Iterator = 0 ; Local_u8Iterator < 10 ; Local_u8Iterator ++ ) // i = 0 
@@ -120,11 +120,12 @@ void main(void)
                         HLCD_voidClearDisplay();
                     }
                     
+					// if the ultrasonic find an object then reset scanning mood 
                     if (Local_u8Iterator != 10)
                     {
                         local_u8State = Scanning;
                     }
-                    else
+                    else/ // if not then start the sequance of parking 
                     {
                         HMotor_voidMotorStop(&RightMotors);
                         HMotor_voidMotorStop(&LeftMotors);
@@ -135,14 +136,7 @@ void main(void)
 
 			break;
 			case Parcking:
-//				// check available slot
-//				HULTRASONIC_voidReadDistance(&Distance);
-//				if (Distance<= 50)
-//				{
-//					local_u8State = Scanning;
-//				}
-//				else
-//				{
+					// move back right with suitble angle 
 					for (int i=0; i <2; i++)
 					{
 						HMotor_voidMotorStop(&RightMotors);
@@ -154,7 +148,7 @@ void main(void)
 						_delay_ms(100);
 					}
 
-					//back left
+					// move back left with the same angle and same length 
 					for (int i=0; i <2; i++)
 					{
 						HMotor_voidMotorStop(&LeftMotors);
@@ -165,6 +159,7 @@ void main(void)
 						HMotor_voidMotorRotateClockwise(&LeftMotors);
 						_delay_ms(100);
 					}
+					// back to idle mode 
 					 local_u8State = Idle;
 //				}
 			break;
@@ -174,9 +169,11 @@ void main(void)
      }
 }
 
+/*isr function to back to the if the ir find object while parking */
 
 static void intAction(void)
 {
+	// back to idle moode 
 	 local_u8State = Idle;
 	 HMotor_voidMotorStop(&RightMotors);
 	 HMotor_voidMotorStop(&LeftMotors);

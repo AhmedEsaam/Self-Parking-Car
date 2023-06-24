@@ -1,0 +1,11 @@
+#ifndef _ULTRASONIC_CONFIG_H_
+#define _ULTRASONIC_CONFIG_H_
+
+#define TRIG_PORT	PORTC_ID
+#define TRIG_PIN	PIN5_ID
+
+#define ECHO_PORT	PORTD_ID
+#define ECHO_PIN	PIN6_ID
+
+
+#endif // _ULTRASONIC_CONFIG_H_

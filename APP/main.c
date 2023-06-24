@@ -178,8 +178,6 @@ static void intAction(void)
 	 HMotor_voidMotorStop(&RightMotors);
 	 HMotor_voidMotorStop(&LeftMotors);
 	_delay_ms(100);
-	
-	
 
 }
 
